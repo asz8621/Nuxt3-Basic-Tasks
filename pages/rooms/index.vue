@@ -10,11 +10,6 @@ import 'swiper/css/pagination';
 
 const modules = ref([Autoplay, Navigation, Pagination]);
 
-const importImage = (url) => {
-	const image = new URL(url, import.meta.url);
-	return image.href;
-};
-
 const roomImages = computed(() => {
 	const rooms = ['a', 'b', 'c', 'd'];
 	const nums = [1, 2, 3, 4, 5];
@@ -22,8 +17,8 @@ const roomImages = computed(() => {
 	const result = rooms.reduce((acc, roomId) => {
 		acc[`room${roomId.toUpperCase()}`] = nums.reduce((obj, num) => {
 			obj[num] = {
-				desktop: importImage(`../assets/images/room-${roomId}-${num}.png`),
-				mobile: importImage(`../assets/images/room-${roomId}-sm-${num}.png`),
+				desktop: `/images/room-${roomId}-${num}.png`,
+				mobile: `/images/room-${roomId}-sm-${num}.png`,
 			};
 			return obj;
 		}, {});
@@ -49,13 +44,10 @@ const roomImages = computed(() => {
 			>
 				<swiper-slide v-for="(num, index) in 5" :key="index">
 					<picture>
-						<source
-							srcset="@/assets/images/home-hero.png"
-							media="(min-width:576px)"
-						/>
+						<source srcset="/images/home-hero.png" media="(min-width:576px)" />
 						<img
 							class="hero-img"
-							src="@/assets/images/home-hero-sm.png"
+							src="/images/home-hero-sm.png"
 							alt="hero banner"
 						/>
 					</picture>
